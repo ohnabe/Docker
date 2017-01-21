@@ -18,7 +18,8 @@ RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
     && tar -C /usr/local -xzf golang.tar.gz \
     && rm golang.tar.gz
 
-RUN apt-get update && apt-get install -y tmux
+RUN apt-get update && apt-get install -y tmux \
+    emacs
 #RUN apt-get install -y emacs
 
 ENV GOPATH /go
