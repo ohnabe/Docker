@@ -18,8 +18,9 @@ RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
     && tar -C /usr/local -xzf golang.tar.gz \
     && rm golang.tar.gz
 
-#RUN apt-get update && apt-get install -y tmux \
-#    emacs
+RUN apt-get update && apt-get install -y tmux \
+    emacs \
+    && rm -rf /var/lib/apt/lists/*
 
 #ENV ANACONDA_URL https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
 #RUN curl -o "$ANACONDA_URL" Anaconda.sh \
