@@ -20,11 +20,13 @@ RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
 
 RUN apt-get update && apt-get install -y tmux \
     emacs \
+    bzip2 \
     && rm -rf /var/lib/apt/lists/*
 
-#ENV ANACONDA_URL https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
-#RUN curl -o "$ANACONDA_URL" Anaconda.sh \
-#    && 
+ENV ANACONDA_URL https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
+RUN curl "$ANACONDA_URL" -o Anaconda.sh \
+    && /bin/bash Anaconda.sh -b \
+    && rm -f Anaconda.sh 
 #RUN apt-get install -y emacs
 
 ENV GOPATH /go
