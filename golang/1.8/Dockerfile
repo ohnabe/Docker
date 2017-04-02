@@ -29,8 +29,8 @@ RUN curl "$ANACONDA_URL" -o Anaconda.sh \
     && rm -f Anaconda.sh 
 #RUN apt-get install -y emacs
 
-RUN source .bashrc
-RUN source .bash_profile
+RUN /bin/bash -c 'source $HOME/.bashrc'
+RUN /bin/bash -c 'source $HOME/.bash_profile'
 RUN pip install gensim
 
 ENV GOPATH /go
