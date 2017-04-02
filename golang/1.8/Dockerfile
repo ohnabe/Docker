@@ -24,14 +24,12 @@ RUN apt-get update && apt-get install -y tmux \
     && rm -rf /var/lib/apt/lists/*
 
 ENV ANACONDA_URL https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
-RUN curl "$ANACONDA_URL" -o Anaconda.sh \
+RUN curl "$ANACONDA_URL" -o Anaconda.sh -p /opt/anaconda \
     && /bin/bash Anaconda.sh -b\
     && rm -f Anaconda.sh 
 #RUN apt-get install -y emacs
 
-RUN /bin/bash -c 'source $HOME/.bashrc'
-RUN /bin/bash -c 'source $HOME/.bash_profile'
-RUN pip install gensim
+RUN /opt/anaconda/bin/pip install gensim
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
