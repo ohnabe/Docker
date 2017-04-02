@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y tmux \
     && rm -rf /var/lib/apt/lists/*
 
 ENV ANACONDA_URL https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
-ENV ANNCONDA_PATH /opt/anaconda3
+ENV ANACONDA_PATH /opt/anaconda3
 RUN curl "$ANACONDA_URL" -o Anaconda.sh\
     && /bin/bash Anaconda.sh -b -p "$ANACONDA_PATH" \
     && rm -f Anaconda.sh 
