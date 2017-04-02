@@ -32,7 +32,7 @@ RUN curl "$ANACONDA_URL" -o Anaconda.sh\
     && rm -f Anaconda.sh 
 #RUN apt-get install -y emacs
 
-RUN /opt/anaconda/bin/pip install gensim
+RUN pip install gensim
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
