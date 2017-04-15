@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y tmux \
 ENV MECAB_URL https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE
 RUN curl -fsSL "$MECAB_URL" -o mecab-0.996.tar.gz \
     && tar -xvzf mecab-0.996.tar.gz \
-    && cd mecab-0.996
+    && cd mecab-0.996 \
     && ./configure --enable-utf8-only --prefix=/opt/local/ \
     && make \
     && make install
