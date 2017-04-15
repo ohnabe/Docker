@@ -23,6 +23,13 @@ RUN apt-get update && apt-get install -y tmux \
     bzip2 \
     && rm -rf /var/lib/apt/lists/*
 
+ENV MECAB_URL https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE
+RUN curl -fsSL "$MECAB_URL" -o mecab-0.996.tar.gz \
+    && tar -xvzf mecab-0.996.tar.gz \
+    && ./configure --enable-utf8-only --prefix=/opt/local/ \
+    && make \
+    && make install
+
 ENV ANACONDA_URL https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
 ENV ANACONDA_PATH /opt/anaconda3
 RUN curl "$ANACONDA_URL" -o Anaconda.sh\
@@ -33,13 +40,6 @@ RUN curl "$ANACONDA_URL" -o Anaconda.sh\
 RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'
 
 RUN "$ANACONDA_PATH/bin/pip" install gensim
-
-ENV MECAB_URL https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE
-RUN curl -o "$MECAB_URL" mecab-0.996.tar.gz \
-    && tar -xvzf mecab-0.996.tar.gz \
-    && ./configure --enable-utf8-only --prefix=/opt/local/ \
-    && make \
-    && make install
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
